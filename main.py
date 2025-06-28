@@ -23,5 +23,28 @@ def login_form():
 """
 @app.route('/login', methods=['POST'])
 def login():
-    USERNAME = request.form.get('username')
-    PASSWORD = request.form.get('password')
+    username = request.form.get('username')
+    password = request.form.get('password')
+    if username == USERNAME and password == PASSWORD:
+        return """
+    <html>
+    <head><title>WELCOME!!!</title></head>
+    <body>
+    <h1>:) welcome, {}</h1>
+    <p>YOU HAVE SUCCESSFULLY LOGGED INN!</p>
+    </body>
+    </html>
+    """.format(username)
+    else:
+        return """
+    <html>
+    <head><title>LOGIN FAILURE</title></head>
+    <body>
+    <h1>LOGIN HAS UNFORTUNATELY AND SUCCESSFULLY FAILED</h1>
+    <p>Incorrect username or password, pls try again</p>
+    <a href="/">back to login<a>
+    </body>
+    </html>
+    """
+if __name__ == '__main__':
+    app.run(debug=True)
